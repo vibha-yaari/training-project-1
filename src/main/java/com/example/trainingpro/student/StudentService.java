@@ -45,6 +45,13 @@ public class StudentService {
         }
         studentRepo.deleteById(studentId);
     }
+    public Student getStudentById(Integer studentId) {
+        boolean exists = studentRepo.existsById(studentId);
+        if (!exists){
+            throw new IllegalStateException("Student with id "+studentId+" doesn't exist");
+        }
+        return studentRepo.findStudentById(studentId);
+    }
 
 
     @Transactional
